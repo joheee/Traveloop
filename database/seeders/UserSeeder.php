@@ -17,32 +17,33 @@ class UserSeeder extends Seeder
             [
                 'email' => 'user@gmail.com',
                 'name' => 'User 1',
+                'role' => 'user',
                 'password' => bcrypt('foobarrr'),
             ],
             [
                 'email' => 'user2@gmail.com',
                 'name' => 'User 2',
+                'role' => 'user',
                 'password' => bcrypt('foobarrr'),
 
             ],
             [
                 'email' => ' user3@gmail.com',
                 'name' => 'User 3',
+                'role' => 'user',
                 'password' => bcrypt('foobarrr'),
             ],
         ];
-
-        $admin = User::firstOrCreate([
+        
+        User::firstOrCreate([
             'email' => 'admin@gmail.com',
             'name' => 'Admin',
+            'role' => 'admin',
             'password' => bcrypt('foobarrr'),
         ]);
 
-        $admin->assignRole('admin');
-
         foreach ($users as $user) {
-            $userModel = User::firstOrCreate($user);
-            $userModel->assignRole('user');
+            User::firstOrCreate($user);
         }
     }
 }

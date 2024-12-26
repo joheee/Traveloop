@@ -28,4 +28,9 @@ class Booking extends Model
     {
         return $this->belongsTo(Hotel::class);
     }
+
+    public function history()
+    {
+        return $this->hasOne(History::class);
+    }
 }
