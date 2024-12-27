@@ -48,6 +48,8 @@ class AuthController extends Controller
         }
     }
 
+    // cibtroller
+
     public function registerVerify(Request $request){
         $request->validate([
             'name' => 'required',
@@ -68,6 +70,7 @@ class AuthController extends Controller
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
+
                 'role' => 'user'
             ]);
 
