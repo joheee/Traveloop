@@ -22,4 +22,9 @@ class HotelController extends Controller
             'recomended' => $recomendedHotels
         ]);
     }
+
+    public function detailHotel()
+    {
+        return view('components.detail');
+    }
 }
