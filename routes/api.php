@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/register', AuthController::class . '@registerVerify');
-Route::post('/login', AuthController::class . '@loginVerify');
+
 Route::middleware('auth:sanctum')->group(function(){
 });
