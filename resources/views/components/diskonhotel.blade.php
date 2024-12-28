@@ -159,7 +159,7 @@
   <button id="expandBtn" class="btn mt-2 text-white" style="background-color: #0ea5e9">Show More</button>
 </div>
 <style>
-  a:hover {
+  .text-decoration-none:hover {
     color: white;
     background-color: #0ea5e9
   }
