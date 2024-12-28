@@ -1,124 +1,139 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
+    <title>Register | Traveloop</title>
+    <style>
+        body {
+            background: #ececec;
+        }
+
+        .box-area {
+            width: 930px;
+        }
+
+        .right-box {
+            padding: 40px 30px 40px 40px;
+        }
+
+        ::placeholder {
+            font-size: 16px;
+        }
+
+        .rounded-4 {
+            border-radius: 20px;
+        }
+
+        .rounded-5 {
+            border-radius: 30px;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .box-area {
+                margin: 0 10px;
+            }
+
+            .left-box {
+                height: 100px;
+                overflow: hidden;
+            }
+
+            .right-box {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header text-center">
-                        <h4>Register</h4>
-                    </div>
-                    <div class="card-body">
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+        <div class="row border rounded-5 p-3 bg-white shadow box-area">
+            <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box"
+                style="background: #103cbe">
+                <div class="featured-image mb-3">
+                    <img src="images/1.png" class="img-fluid" style="width: 250px" />
+                </div>
+                <p class="text-white fs-2" style="font-weight: 600">
+                    Find Your Perfect Stay
+                </p>
+                <small class="text-white text-wrap text-center" style="width: 17rem">
+                    Book your dream hotel with ease and comfort</small>
+            </div>
 
-                        <!-- Flash Messages -->
-                        @if (session('success'))
-                            <div class="alert alert-success">
-                                {{ session('success') }}
+            <div class="col-md-6 right-box">
+                <div class="row align-items-center">
+                    <form action="{{ route('auth.registerVerify') }}" method="POST">
+                        @csrf
+                        <div class="header-text mb-4">
+                            <h2>Create an Account</h2>
+                            <p>Join us to start booking your perfect stay.</p>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="text" name="name" class="form-control form-control-lg bg-light fs-6 @error('name') is-invalid @enderror"
+                                placeholder="Name" />
+                            @error('name')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="email" name="email" class="form-control form-control-lg bg-light fs-6 @error('email') is-invalid @enderror"
+                                placeholder="Email" />
+                            @error('email')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="input-group mb-1">
+                            <input type="password" name="password" class="form-control form-control-lg bg-light fs-6 @error('password') is-invalid @enderror"
+                                placeholder="Password" />
+                            @error('password')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="input-group mb-1">
+                            <input type="password" name="confirm_password"
+                                class="form-control form-control-lg bg-light fs-6 @error('confirm_password') is-invalid @enderror" placeholder="Confirm Password" />
+                            @error('confirm_password')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="input-group mb-5 d-flex justify-content-between">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="formCheck" />
+                                <label for="formCheck" class="form-check-label text-secondary"><small>I agree to the
+                                        Terms
+                                        and Conditions</small></label>
                             </div>
-                        @endif
-
-                        @if (session('error'))
-                            <div class="alert alert-danger">
-                                {{ session('error') }}
-                            </div>
-                        @endif
-
-                        <!-- Register Form -->
-                        <form action="{{ route('auth.registerVerify') }}" method="POST">
-                            @csrf
-
-                            <!-- Name Input -->
-                            <div class="mb-3">
-                                <label for="name" class="form-label">Full Name</label>
-                                <input 
-                                    type="text" 
-                                    name="name" 
-                                    id="name" 
-                                    class="form-control @error('name') is-invalid @enderror" 
-                                    value="{{ old('name') }}" 
-                                    required 
-                                    autofocus>
-                                @error('name')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-
-                            <!-- Email Input -->
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email Address</label>
-                                <input 
-                                    type="email" 
-                                    name="email" 
-                                    id="email" 
-                                    class="form-control @error('email') is-invalid @enderror" 
-                                    value="{{ old('email') }}" 
-                                    required>
-                                @error('email')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-
-                            <!-- Password Input -->
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Password</label>
-                                <input 
-                                    type="password" 
-                                    name="password" 
-                                    id="password" 
-                                    class="form-control @error('password') is-invalid @enderror" 
-                                    required>
-                                @error('password')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-
-                            <!-- Confirm Password Input -->
-                            <div class="mb-3">
-                                <label for="confirm_password" class="form-label">Confirm Password</label>
-                                <input 
-                                    type="password" 
-                                    name="confirm_password" 
-                                    id="confirm_password" 
-                                    class="form-control @error('confirm_password') is-invalid @enderror" 
-                                    required>
-                                @error('confirm_password')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-
-                            <!-- Submit Button -->
-                            <div class="d-grid">
-                                <button type="submit" class="btn btn-primary">Register</button>
-                            </div>
-                        </form>
-
-                        <!-- Login Link -->
-                        <div class="text-center mt-3">
-                            <p>Sudah punya akun? 
-                                <a href="{{ route('auth.login') }}" class="text-decoration-none">Login</a>
-                            </p>
+                        </div>
+                        <div class="input-group mb-3">
+                            <button type="submit" class="btn btn-lg btn-primary w-100 fs-6">
+                                Register
+                            </button>
                         </div>
 
-                    </div>
+                        <div class="row">
+                            <small>Already have an account? <a href="{{ route('auth.login') }}">Login here</a></small>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
