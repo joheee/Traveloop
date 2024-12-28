@@ -17,11 +17,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth')->group(function () {
-    Route::get('/id', [HotelController::class, 'landing'])->name('hotel.landing');
+    Route::get('/', [HotelController::class, 'landing'])->name('hotel.landing');
     Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 });
-
-Route::redirect('/', '/id');
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'login'])->name('auth.login');

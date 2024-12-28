@@ -16,4 +16,8 @@ class Hotel extends Model
         'image',
         'price_per_night',
     ];
+
+    protected $casts = [
+        'image' => 'array',
+    ];
 }
