@@ -44,7 +44,19 @@ class User extends Authenticatable implements FilamentUser
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'password' => 'hashed',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::updating(function ($user) {
+            if (empty($user->password)) {
+                unset($user->password);
+            }
+        });
+    }
 
     public function canAccessPanel(Panel $panel): bool
     {

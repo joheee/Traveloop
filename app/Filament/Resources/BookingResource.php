@@ -6,6 +6,7 @@ use App\Filament\Resources\BookingResource\Pages;
 use App\Filament\Resources\BookingResource\RelationManagers;
 use App\Models\Booking;
 use Filament\Forms;
+use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -50,10 +51,37 @@ class BookingResource extends Resource
                         Forms\Components\TextInput::make('number_of_guests')
                             ->label('Number of Guests')
                             ->required()
+                            ->reactive()
+                            ->afterStateUpdated(function ($state, $set) {
+                                $formatter = NumberFormatter::create('id_ID', NumberFormatter::DECIMAL);
+                                $formatter->setAttribute(NumberFormatter::MIN_FRACTION_DIGITS, 2);
+                                $formatter->setAttribute(NumberFormatter::MAX_FRACTION_DIGITS, 2);
+                                $set('total_price', $formatter->format((float) $state * 100000));
+                            })
                             ->numeric(),
+                        Fieldset::make('Price Hotel')
+                            ->relationship('hotel', 'name')
+                            ->schema([
+                                MoneyInput::make('price_per_night')
+                                    ->label('Price/Night')
+                                    ->required()
+                                    ->readOnly()
+                                    ->columnSpanFull()
+                                    ->currency('IDR')
+                                    ->locale('id_ID')
+                                    ->minValue(100)
+                                    ->formatStateUsing(function ($state) {
+                                        return NumberFormatter::create('id_ID', NumberFormatter::CURRENCY)
+                                            ->format((float) $state * 1000);
+                                    })
+                                    ->mutateDehydratedStateUsing(function ($state) {
+                                        return (float) $state / 100000;
+                                    })
+                            ]),
                         MoneyInput::make('total_price')
                             ->label('Total Price')
                             ->required()
+                            ->readOnly()
                             ->columnSpanFull()
                             ->currency('IDR')
                             ->locale('id_ID')
