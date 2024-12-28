@@ -40,7 +40,7 @@ class AuthController extends Controller
                 if ($user->role == 'admin') {
                     return redirect()->route('filament.admin.pages.dashboard');
                 } else {
-                    return redirect()->route('home')->with('success', 'Login successfully as user');
+                    return redirect()->route('hotel.landing')->with('success', 'Login successfully as user');
                 }
             } else {
                 return redirect()->back()->with('error', 'Ada Kesalahan Saat Login');
@@ -94,7 +94,7 @@ class AuthController extends Controller
             Auth::logout($user);
 
             toastr()->success('Log successfully');
-            return redirect()->route('auth.login')->with('success', 'Logout successfully');
+            return redirect()->route('login')->with('success', 'Logout successfully');
         } catch (Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }

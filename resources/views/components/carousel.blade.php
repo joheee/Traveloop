@@ -1,27 +1,27 @@
-<div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval="{{ $interval ?? 2000 }}">
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" data-bs-interval="{{ $interval ?? 2000 }}">
     <ol class="carousel-indicators">
         @foreach($images as $index => $image)
-            <li data-target="#carouselExampleControls" data-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}"></li>
+            <li data-bs-target="#carouselExampleControls" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}"></li>
         @endforeach
     </ol>
     <div class="carousel-inner">
         @foreach($images as $index => $image)
             <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
                 <img class="d-block w-100" src="{{ asset('static/' . $image['src']) }}" alt="Slide {{ $index + 1 }}">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>{{ $image['title'] ?? 'Beautiful Destination' }}</h5>
+                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                    <h3>{{ $image['title'] ?? 'Beautiful Destination' }}</h3>
                     <p>{{ $image['caption'] ?? 'Explore the world with us!' }}</p>
                 </div>
             </div>
         @endforeach
     </div>
-    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
+        <span class="visually-hidden">Previous</span>
     </a>
-    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
+        <span class="visually-hidden">Next</span>
     </a>
 </div>
 
@@ -39,9 +39,11 @@
 
     .carousel-caption {
         position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        text-align: center;
         color: white;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
     }
