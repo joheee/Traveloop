@@ -9,7 +9,7 @@
             <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
                 <img class="d-block w-100" src="{{ asset('static/' . $image['src']) }}" alt="Slide {{ $index + 1 }}">
                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                    <h5>{{ $image['title'] ?? 'Beautiful Destination' }}</h5>
+                    <h3>{{ $image['title'] ?? 'Beautiful Destination' }}</h3>
                     <p>{{ $image['caption'] ?? 'Explore the world with us!' }}</p>
                 </div>
             </div>
