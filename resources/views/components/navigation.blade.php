@@ -17,17 +17,14 @@
                     <a class="nav-link" href="#">Profile</a>
                 </li>
                 <li class="nav-item">
-                    <form action="{{ route('user.logout') }}" method="POST" class="d-inline">
-                        @csrf
-                        <button type="submit" class="btn btn-link nav-link">Logout</button>
-                    </form>
+                        <a href="{{ route('auth.logout') }}" class="btn btn-link nav-link">Logout</a>
                 </li>
             @else
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('user.register') }}">Register</a>
+                    <a class="nav-link" href="{{ route('auth.register') }}">Register</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('user.login') }}">Login</a>
+                    <a class="nav-link" href="{{ route('auth.login') }}">Login</a>
                 </li>
             @endif
         </ul>

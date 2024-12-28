@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -15,8 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HotelController::class,'landing'])->name('hotel.landing');
+Route::middleware('auth')->group(function () {
+    Route::get('/', [HotelController::class, 'landing'])->name('hotel.landing');
+    Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
+});
 
-Route::get('/login', [UserController::class, 'login'])->name('user.login');
-Route::get('/register', [UserController::class, 'register'])->name('user.register');
-Route::post('/logout', [UserController::class,'logout'])->name('user.logout');
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::get('/register', [AuthController::class, 'register'])->name('auth.register');
+    Route::post('/login', [AuthController::class, 'loginVerify'])->name('auth.loginVerify');
+    Route::post('/register', [AuthController::class, 'registerVerify'])->name('auth.registerVerify');
+});
