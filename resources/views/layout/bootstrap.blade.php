@@ -13,7 +13,7 @@
 </head>
 <body>
     @include('components.navigation')
-
+    @yield('header')
     <div class="container">
         @yield('content')
     </div>
