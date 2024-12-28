@@ -8,7 +8,7 @@
         @foreach($images as $index => $image)
             <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
                 <img class="d-block w-100" src="{{ asset('static/' . $image['src']) }}" alt="Slide {{ $index + 1 }}">
-                <div class="carousel-caption d-none d-md-block">
+                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                     <h5>{{ $image['title'] ?? 'Beautiful Destination' }}</h5>
                     <p>{{ $image['caption'] ?? 'Explore the world with us!' }}</p>
                 </div>
@@ -39,9 +39,11 @@
 
     .carousel-caption {
         position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        text-align: center;
         color: white;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
     }
