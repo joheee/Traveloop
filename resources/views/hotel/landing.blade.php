@@ -4,8 +4,6 @@
 
 @section('content')
 
-<x-navigation />
-
 <div class="mt-4">
     <x-carousel :interval="2000" :images="[
     ['src' => 'hotel-1.jpg', 'title' => 'Amazing Beach', 'caption' => 'A serene view of the beach'],
@@ -24,9 +22,5 @@
 @include('components.fasilitashotel')
 
 @include('components.faq')
-
-@include('components.footer')
-
-
 
 @endsection
