@@ -15,4 +15,18 @@
 
 </div>
 
+@include('components.herohotel')
+
+@include('components.diskonhotel')
+
+@include('components.rekomenhotel')
+
+@include('components.fasilitashotel')
+
+@include('components.faq')
+
+@include('components.footer')
+
+
+
 @endsection
