@@ -1,7 +1,15 @@
 <nav class="navbar navbar-expand-lg sticky-top" style="background-color: #0ea5e9">
-    <div class="container-fluid">
+    <div class="container">
         <a class="navbar-brand text-white" href="#">Traveloop</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" id="navbar-toggler">
+        <button 
+            class="navbar-toggler p-1 w-auto h-auto fs-6 d-md-none" 
+            type="button" 
+            data-bs-toggle="collapse" 
+            data-bs-target="#navbarSupportedContent" 
+            aria-controls="navbarSupportedContent" 
+            aria-expanded="false" 
+            aria-label="Toggle navigation" 
+            id="navbar-toggler">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
