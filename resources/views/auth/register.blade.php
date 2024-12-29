@@ -123,7 +123,7 @@
                         </div>
 
                         <div class="row">
-                            <small>Already have an account? <a href="{{ route('auth.login') }}">Login here</a></small>
+                            <small>Already have an account? <a href="{{ route('login') }}">Login here</a></small>
                         </div>
                     </form>
                 </div>
