@@ -29,7 +29,6 @@
 
 
         <div class="container my-5">
-
             <div class="row">
                 @php
                     $defaultImage = asset('static/hotel1.png'); // Gambar default
@@ -153,13 +152,11 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="text-primary fw-bold">
-                                {{ $hotel->price_per_night }} <span
-                                    class="text-danger text-decoration-line-through fw-normal fs-6">Rp.1250.000</span>
+                                Rp. {{ $hotel->price_per_night }}
                             </h4>
                             <p>{{ $today . ' - ' . $tomorrow . ' ' }}| 1 Kamar, 2 Tamu</p>
-                            <p>Your savings: <span class="text-success fw-bold">{{ $hotel->price_per_night }}</span></p>
                             <hr>
-                            <h5>Total Price: <span class="fw-bold">{{ $hotel->price_per_night }}</span></h5>
+                            <h5>Total Price: <span class="fw-bold">Rp. {{ $hotel->price_per_night }}</span></h5>
                             <button class="btn btn-primary btn-lg w-100 mt-3">PESAN SEKARANG!!</button>
                         </div>
                     </div>

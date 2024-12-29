@@ -11,7 +11,7 @@ class HotelController extends Controller
 {
     public function landing()
     {
-        $allHotel = DB::table('hotels')->get();
+        $allHotel = DB::table('hotels')->limit(3)->get();
         $recomendedHotels = Hotel::withCount(['bookings' => function ($query) {
             $query->where('status', 'confirmed');
         }])
@@ -22,6 +22,13 @@ class HotelController extends Controller
         return view('hotel.landing', [
             'hotels' => $allHotel,
             'recomended' => $recomendedHotels
+        ]);
+    }
+
+    public function getAllHotels(){
+        $allHotel = DB::table('hotels')->get();
+        return view('hotel.hotels',[
+            'hotels' => $allHotel
         ]);
     }
 
@@ -36,7 +43,7 @@ class HotelController extends Controller
         // Format hasil
         $todayFormatted = $today->format('D, d M');
         $tomorrowFormatted = $tomorrow->format('D, d M');
-        return view('components.detail', [
+        return view('hotel.detail', [
             'hotel' => $hotel,
             'today' => $todayFormatted,
             'tomorrow' => $tomorrowFormatted
