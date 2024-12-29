@@ -24,7 +24,7 @@ class AuthController extends Controller
     {
         try {
             $request->validate([
-                'email' => 'required|email:dns|exists:users,email',
+                'email' => 'required|email|exists:users,email',
                 'password' => 'required',
             ], [
                 'email.required' => 'Email Wajib Di Isi',

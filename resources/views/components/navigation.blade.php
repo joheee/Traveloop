@@ -21,7 +21,7 @@
                         <a class="nav-link text-white" href="{{ route('auth.register') }}">Register</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="{{ route('auth.login') }}">Login</a>
+                        <a class="nav-link text-white" href="{{ route('login') }}">Login</a>
                     </li>
                 @endif
             </ul>

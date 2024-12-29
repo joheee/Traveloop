@@ -5,14 +5,18 @@
             <div class="col-sm-6 col-md-4 mb-4">
                 <div class="card position-relative text-white rounded-3">
                     @if ($item->image)
-                    <img src="{{ asset('storage/hotels/'.$item->image) }}" class="card-img-top" alt="Aurora Bliss Hotel">
+                        @php
+                            $firstImage = $item->image[0]; // Ambil elemen pertama
+                        @endphp
+                        <img src="{{ asset('storage/' . $firstImage) }}" class="card-img-top"
+                            alt="{{ $item->name }}">
                     @else
-                    <img src="{{ asset('static/hotel1.jpg') }}" class="card-img rounded-3" alt="Indonesia">
+                        <img src="{{ asset('static/hotel1.jpg') }}" class="card-img rounded-3" alt="Indonesia">
                     @endif
                     <div class="custom-overlay rounded-3"></div>
                     <div class="position-absolute top-0 start-0 text-start p-3">
                         <h5 class="card-title">{{ $item->name }}</h5>
-                        <p class="card-text">{{ $item->address.", ".$item->price_per_night }}</p>
+                        <p class="card-text">{{ $item->address . ', ' . $item->price_per_night }}</p>
                     </div>
                 </div>
             </div>
