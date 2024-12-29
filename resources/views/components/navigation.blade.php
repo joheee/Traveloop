@@ -5,7 +5,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto w-100 justify-content-center justify-content-lg-end">
+            <ul class="d-flex align-items-center navbar-nav ms-auto w-100 justify-content-center justify-content-lg-end">
                 @if(auth()->check())
                     <li class="nav-item">
                         <a class="nav-link text-white" href="#">Cart</a>
