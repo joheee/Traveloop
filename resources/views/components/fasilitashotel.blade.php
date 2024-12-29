@@ -88,7 +88,7 @@
 </div>
 
 <style>
-  .service:hover{
+  .service{
     background-color: #0ea5e9;
     color:white;
   }

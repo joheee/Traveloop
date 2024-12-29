@@ -3,10 +3,10 @@
     <div class="row g-3">
         @foreach ($recomended as $item)
             <div class="col-sm-6 col-md-4 mb-4">
-                <div class="card position-relative text-white rounded-3">
+                <a href="#" class="card position-relative text-white rounded-3">
                     @if ($item->image)
                         @php
-                            $firstImage = $item->image[0]; // Ambil elemen pertama
+                            $firstImage = $item->image[0]; 
                         @endphp
                         <img src="{{ asset('storage/' . $firstImage) }}" class="card-img-top"
                             alt="{{ $item->name }}">
@@ -18,7 +18,7 @@
                         <h5 class="card-title">{{ $item->name }}</h5>
                         <p class="card-text">{{ $item->address . ', ' . $item->price_per_night }}</p>
                     </div>
-                </div>
+                </a>
             </div>
         @endforeach
     </div>
