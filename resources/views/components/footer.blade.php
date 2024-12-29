@@ -1,5 +1,5 @@
 <footer class="bg-primary text-white">
-    <div class="container-fluid py-2">
+    <div class="container py-5">
         <div class="row text-center text-md-start">
             <div class="col-12 col-md-3">
                 <h6 class="fw-bold">TRAVELOOP</h6>
