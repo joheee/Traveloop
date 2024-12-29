@@ -18,8 +18,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
     Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
-    Route::get('page/{hotel}/detail-hotel', [HotelController::class, 'detailHotel'])->name('components.detail');
+    Route::get('/profile', [UserController::class, 'profile'])->name('profile');
 });
+
+Route::get('page/{hotel}/detail-hotel', [HotelController::class, 'detailHotel'])->name('components.detail');
 
 Route::get('/', [HotelController::class, 'landing'])->name('hotel.landing');
 
