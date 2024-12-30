@@ -6,11 +6,21 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-
-    public function logout(Request $req){
-        auth()->logout();
-        $req->session()->invalidate();
-        $req->session()->regenerateToken();
-        return redirect()->route('user.login');
+    public function profile()
+    {
+        // Mendapatkan user yang sedang login
+        $user = auth()->user();
+    
+        // Mengambil history booking berdasarkan user yang login
+        $histories = \App\Models\History::with(['booking.hotel'])
+            ->where('user_id', $user->id)
+            ->get();
+    
+        // Mengembalikan data ke view atau API
+        return view('profile.index', [
+            'histories' => $histories,
+            'user' => $user
+        ]);
     }
+    
 }
