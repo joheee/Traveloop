@@ -80,7 +80,7 @@ class AuthController extends Controller
 
             auth()->login($user);
             toastr()->success('success', 'Register successfully');
-            return redirect()->route('/');
+            return redirect()->route('hotel.landing');
         } catch (Exception $e) {
             toastr()->warning('invalid', $e->getMessage());
             return redirect()->back()->with('error', $e->getMessage());
