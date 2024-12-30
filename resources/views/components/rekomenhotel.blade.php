@@ -2,7 +2,7 @@
     <h2 class="text-center mb-4">Hotel <br><span>Recomended</span></h2>
     <div class="row g-3">
         @foreach ($recomended as $item)
-            <div class="col-sm-6 col-md-4 mb-4">
+            <div class="col-lg-4 col-6 col-md-6 mb-4">
                 <a href="#" class="card position-relative text-white rounded-3">
                     @if ($item->image)
                         @php
@@ -16,7 +16,7 @@
                     <div class="custom-overlay rounded-3"></div>
                     <div class="position-absolute top-0 start-0 text-start p-3">
                         <h5 class="card-title">{{ $item->name }}</h5>
-                        <p class="card-text">{{ $item->address . ', ' . $item->price_per_night }}</p>
+                        <p class="card-text">{{ $item->address  }}</p>
                     </div>
                 </a>
             </div>

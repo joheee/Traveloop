@@ -15,13 +15,11 @@ class UserController extends Controller
         $histories = \App\Models\History::with(['booking.hotel'])
             ->where('user_id', $user->id)
             ->get();
-
-        dd($histories);
     
         // Mengembalikan data ke view atau API
-        return response()->json([
-            'success' => true,
-            'data' => $histories,
+        return view('profile.index', [
+            'histories' => $histories,
+            'user' => $user
         ]);
     }
     

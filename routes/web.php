@@ -21,8 +21,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [UserController::class, 'profile'])->name('profile');
 });
 
-Route::get('page/{hotel}/detail-hotel', [HotelController::class, 'detailHotel'])->name('components.detail');
+Route::get('list-hotel/{hotel}/detail-hotel', [HotelController::class, 'detailHotel'])->name('components.detail');
 
+Route::get('list-hotel', [HotelController::class, 'getAllHotels'])->name('hotel.all');
 Route::get('/', [HotelController::class, 'landing'])->name('hotel.landing');
 
 Route::middleware('guest')->group(function () {
