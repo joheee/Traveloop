@@ -62,7 +62,7 @@
                 <div class="mt-4">
                     <h3 class="fw-bold">AURORA BLISS HOTEL <span class="badge-star">5★</span></h3>
                     <p>No 15 JL Pangandaran - Jawa Barat</p>
-                    <a href="#" class="link">Nikmati Pengalaman check in di hotel ini</a>
+                    <a>Nikmati Pengalaman check in di hotel ini</a>
                     <h5 class="mt-3 fw-bold">Deskripsi</h5>
                     <p>
                         AURORA BLISS HOTEL terletak di pesisir pantai. Hotel ini merupakan hotel dengan fasilitas
