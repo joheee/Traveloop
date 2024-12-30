@@ -38,9 +38,9 @@ class AuthController extends Controller
                 $user = User::where('email', $request->email)->first();
 
                 if ($user->role == 'admin') {
-                    return redirect()->route('filament.admin.pages.dashboard');
+                    return redirect()->route('filament.admin.pages.dashboard')->with('success', 'Login successfully');
                 } else {
-                    return redirect()->route('hotel.landing')->with('success', 'Login successfully as user');
+                    return redirect()->route('hotel.landing')->with('success', 'Login successfully');
                 }
             } else {
                 return redirect()->back()->with('error', 'Ada Kesalahan Saat Login');

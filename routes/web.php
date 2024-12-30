@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->group(function () {
     Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
     Route::get('/profile', [UserController::class, 'profile'])->name('profile');
+    Route::post('/list-hotel/{hotel}/booking-hotel', [BookingController::class, 'create'])->name('hotel.booking.create');
     Route::get('list-hotel/{hotel}/booking-hotel', [BookingController::class, 'bookinghotel'])->name('hotel.booking');
 });
 

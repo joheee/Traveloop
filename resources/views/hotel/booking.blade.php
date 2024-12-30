@@ -23,6 +23,7 @@
             font-size: 1.2rem;
         }
     </style>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     </head>
 
     <body>
@@ -50,7 +51,8 @@
                             </div>
 
                             <p class="mb-1">
-                                Harga Permalam dan Perkamar <strong class="text-success">Rp. {{ $hotel->price_per_night }}</strong>
+                                Harga Permalam dan Perkamar <strong class="text-success">Rp.
+                                    {{ $hotel->price_per_night }}</strong>
                             </p>
                             <p class="text-dark fw-bold">
                                 Total Harga: <strong id="total-price">Rp. 750.000</strong>
@@ -68,7 +70,7 @@
                                 Pastikan Anda mengisi detail pemesanan dengan benar untuk
                                 memastikan kenyamanan dan kelancaran proses reservasi.
                             </p>
-                            <form>
+                            <form data-url="{{ route('hotel.booking.create',$hotel->id) }}">
                                 <div class="row mb-3">
                                     <div class="col">
                                         <label for="namaLengkap" class="form-label">Nama Lengkap</label>
@@ -76,9 +78,9 @@
                                             placeholder="Masukkan nama lengkap" value="{{ auth()->user()->name }}" />
                                     </div>
                                     <div class="col">
-                                      <label for="jumlahKamar" class="form-label">Jumlah Kamar</label>
-                                    <input type="number" class="form-control" id="jumlahKamar"
-                                        placeholder="Masukkan jumlah kamar" value="1" min="1" />
+                                        <label for="jumlahKamar" class="form-label">Jumlah Kamar</label>
+                                        <input type="number" class="form-control" id="jumlahKamar"
+                                            placeholder="Masukkan jumlah kamar" value="1" min="1" />
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -98,10 +100,13 @@
                             </form>
                         </div>
                     </div>
+                    <div id="alert-container" class="mt-3"></div>
                 </div>
             </div>
         </div>
-
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.slim.js"
+            integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc=" crossorigin="anonymous"></script>
         <script>
             const today = new Date();
             const tomorrow = new Date();
@@ -222,5 +227,46 @@
             checkOutInput.addEventListener('change', calculateTotalPrice);
 
             calculateTotalPrice();
+
+            // Event listener untuk tombol "PESAN SEKARANG"
+            $('form').on('submit', function(e) {
+                e.preventDefault();
+
+                const url = $(this).data('url')
+
+                const data = {
+                    check_in_date: $('#checkIn').val(),
+                    check_out_date: $('#checkOut').val(),
+                    number_of_rooms: $('#jumlahKamar').val(),
+                    total_price: parseInt($('#total-price').text().replace(/[^\d]/g, ''), 10),
+                    _token: $('meta[name="csrf-token"]').attr('content'),
+                };
+
+                $.ajax({
+                    url: url,
+                    method: 'POST',
+                    data: data,
+                    success: function(response) {
+                        // Menampilkan pesan sukses
+                        $('#alert-container').html(`
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                ${response.message || 'Data berhasil dikirim!'}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        `);
+                    },
+                    error: function(xhr) {
+                        // Menampilkan pesan error
+                        const errorMessage = xhr.responseJSON?.message ||
+                            'Terjadi kesalahan saat memproses data.';
+                            $('#alert-container').html(`
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    ${errorMessage}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            `);
+                    }
+                });
+            });
         </script>
     @endsection

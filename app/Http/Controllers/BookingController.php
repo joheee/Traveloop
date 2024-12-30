@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
 use App\Models\Hotel;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,33 +17,37 @@ class BookingController extends Controller
             'hotel' => $hotel
         ]);
     }
-    public function create(Request $request, Hotel $hotel){
-        // Validasi input
-        $validatedData = $request->validate([
-            'check_in_date' => 'required|date|after_or_equal:today',
+    public function create(Request $request, Hotel $hotel)
+    {
+        $validated = $request->validate([
+            'check_in_date' => 'required|date',
             'check_out_date' => 'required|date|after:check_in_date',
-            'number_of_guests' => 'required|integer|min:1',
+            'number_of_rooms' => 'required|integer|min:1',
+            'total_price' => 'required|numeric|min:0',
         ]);
-
-        // Hitung total harga (contoh: harga per malam dikali jumlah malam)
-        $numberOfNights = (new \DateTime($validatedData['check_out_date']))->diff(new \DateTime($validatedData['check_in_date']))->days;
-        $pricePerNight = $hotel->price_per_night; // Asumsikan tabel hotels punya kolom price_per_night
-        $totalPrice = $numberOfNights * $pricePerNight;
-
-        // Buat data booking
-        $booking = Booking::create([
-            'user_id' => Auth::id(),
-            'hotel_id' => $hotel->id,
-            'check_in_date' => $validatedData['check_in_date'],
-            'check_out_date' => $validatedData['check_out_date'],
-            'number_of_guests' => $validatedData['number_of_guests'],
-            'total_price' => $totalPrice,
-            'status' => 'pending',
-        ]);
-
-        return response()->json([
-            'message' => 'Booking created successfully.',
-            'booking' => $booking
-        ], 201);
+    
+        try {
+            // Simpan data ke database
+            $booking = Booking::create([
+                'check_in_date' => $validated['check_in_date'],
+                'check_out_date' => $validated['check_out_date'],
+                'number_of_rooms' => $validated['number_of_rooms'],
+                'total_price' => $validated['total_price'],
+                'hotel_id' => $hotel->id,
+                'user_id' => auth()->user()->id,
+            ]);
+    
+            return response()->json([
+                'success' => true,
+                'message' => 'Pemesanan berhasil.',
+                'data' => $booking,
+            ], 201);
+        } catch (Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal memproses pemesanan.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
     }
 }
