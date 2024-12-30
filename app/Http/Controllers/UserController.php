@@ -17,10 +17,9 @@ class UserController extends Controller
             ->get();
     
         // Mengembalikan data ke view atau API
-        return view('profile.index', [
-            'histories' => $histories,
-            'user' => $user
-        ]);
+        return view('profile.index'
+
+        );
     }
     
 }
