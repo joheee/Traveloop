@@ -41,8 +41,8 @@ class BookingResource extends Resource
                             ->live()
                             ->afterStateHydrated(function ($state, $set) {
                                 $hotel = \App\Models\Hotel::find($state);
-
-                                $set('price_per_night', $hotel->price_per_night ?? null);
+                                if ($hotel)
+                                    $set('price_per_night', NumberFormatter::create('id_ID', NumberFormatter::DECIMAL_SEPARATOR_SYMBOL)->format($hotel->price_per_night) ?? null);
                             })
                             ->afterStateUpdated(function ($state, $set, $get) {
                                 if ($state) {
@@ -91,10 +91,8 @@ class BookingResource extends Resource
                                 $checkInDate = \Carbon\Carbon::parse($get('check_in_date'));
 
                                 if ($checkOutDate && $checkInDate) {
-                                    $diff = $checkOutDate->diff($checkInDate);
-                                    $diffInDays = $diff->days; // Mengambil jumlah hari
-                                    $diffInDays = $diffInDays == 0 ? 1 : $diffInDays;
-                                    $set('total_nights', $diffInDays);
+                                    $totalNights = $checkOutDate->diffInDays($checkInDate);
+                                    $set('total_nights', $totalNights);
                                 } else {
                                     $set('total_nights', 0);
                                 }
@@ -139,6 +137,9 @@ class BookingResource extends Resource
                             ->currency('IDR')
                             ->locale('id_ID')
                             ->minValue(100)
+                            ->afterStateHydrated(function ($state) {
+                                NumberFormatter::create('id_ID', NumberFormatter::DECIMAL)->format((float) $state * 1000);
+                            })
                             ->formatStateUsing(function ($state) {
                                 return NumberFormatter::create('id_ID', NumberFormatter::CURRENCY)
                                     ->format((float) $state * 1000);
@@ -189,10 +190,10 @@ class BookingResource extends Resource
             ]);
     }
 
-
     public static function table(Table $table): Table
     {
         return $table
+        ->defaultSort('created_at', 'desc')
             ->columns([
                 Tables\Columns\TextColumn::make('user.name')
                     ->label('Booked by')
