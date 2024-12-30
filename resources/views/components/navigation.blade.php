@@ -2,7 +2,7 @@
     <div class="container">
         <a class="navbar-brand text-white" href="#">Traveloop</a>
         <button 
-            class="navbar-toggler p-1 w-auto h-auto fs-6 d-md-none" 
+            class="navbar-toggler p-1 w-auto h-auto fs-6" 
             type="button" 
             data-bs-toggle="collapse" 
             data-bs-target="#navbarSupportedContent" 
