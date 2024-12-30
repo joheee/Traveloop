@@ -132,7 +132,8 @@
   .card-hotel:hover a h5,
   .card-hotel:hover a p,
   .card-hotel:hover a span,
-  .card-hotel:hover a svg
+  .card-hotel:hover a svg,
+  .card-hotel:hover a h6
   {
     color: white !important;
   }

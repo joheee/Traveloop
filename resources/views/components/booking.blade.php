@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Booking Details</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+    @extends('layout.bootstrap')
+
+    @section('content')
     <style>
       .card-header {
         font-weight: bold;
@@ -28,9 +21,39 @@
     </style>
   </head>
   <body>
+    
     <div class="container mt-5">
       <div class="row g-4">
-        <!-- Form Section -->
+        <div class="col-md-6">
+          <div class="card shadow-sm border-0">
+            <div class="card-body">
+            <div class="btn btn-sm btn-light">
+                <i class="bi bi-chevron-compact-left"></i>
+                Kembali
+            </div>
+              <h5 class="card-title fw-bold mt-3">AURORA BLISS HOTEL</h5>
+              <p class="text-muted">No 15 JL Pangandaran - Jawa Barat</p>
+              <img
+                src="{{ asset('static/hotel1.jpg') }}"
+                alt="Hotel Image"
+                class="img-fluid rounded mb-3"
+              />
+              <div class="border p-3 mb-3">
+                <div class="d-flex justify-content-between">
+                  <span>Jum, 27 Des - Sab, 28 Des</span>
+                  <span>1 Kamar, 2 Tamu</span>
+                </div>
+                <div class="mt-2">1 Malam</div>
+              </div>
+              <p class="mb-1">
+                Your savings <strong class="text-success">Rp. 400.000</strong>
+              </p>
+              <p class="text-dark fw-bold">
+                Total Price <strong>Rp. 750.000</strong>
+              </p>
+            </div>
+          </div>
+        </div>
         <div class="col-md-6">
           <div class="card shadow-sm border-0">
             <div class="card-header bg-light text-center">
@@ -79,38 +102,7 @@
               </form>
             </div>
           </div>
-        </div>
-
-        <!-- Booking Details Section -->
-        <div class="col-md-6">
-          <div class="card shadow-sm border-0">
-            <div class="card-body">
-              <h5 class="card-title">AURORA BLISS HOTEL</h5>
-              <p class="text-muted">No 15 JL Pangandaran - Jawa Barat</p>
-              <img
-                src="https://via.placeholder.com/300x150"
-                alt="Hotel Image"
-                class="img-fluid rounded mb-3"
-              />
-              <div class="border p-3 mb-3">
-                <div class="d-flex justify-content-between">
-                  <span>Jum, 27 Des - Sab, 28 Des</span>
-                  <span>1 Kamar, 2 Tamu</span>
-                </div>
-                <div class="mt-2">1 Malam</div>
-              </div>
-              <p class="text-danger mb-1">
-                Your savings <strong>Rp. 400.000</strong>
-              </p>
-              <p class="text-dark fw-bold">
-                Total Price <strong>Rp. 750.000</strong>
-              </p>
-            </div>
-          </div>
-        </div>
+        </div>   
       </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
-</html>
+@endsection
