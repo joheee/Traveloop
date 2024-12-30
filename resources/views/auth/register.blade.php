@@ -52,9 +52,8 @@
     </style>
 </head>
 
-<body>
-    <div class="container d-flex justify-content-center align-items-center min-vh-100">
-        <div class="row border rounded-5 p-3 bg-white shadow box-area">
+<body class="w-vw-100 overflow-x-hidden">
+    <div class="row border rounded-5 p-3 bg-white" style="height: 100vh !important">
             <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box"
                 style="background: #103cbe">
                 <p class="text-white fs-2" style="font-weight: 600">
@@ -64,8 +63,8 @@
                     Book your dream hotel with ease and comfort</small>
             </div>
 
-            <div class="col-md-6 right-box">
-                <div class="row align-items-center">
+            <div class="col-md-6 right-box d-flex align-items-center">
+                <div class="row align-items-center w-100">
                     <form action="{{ route('auth.registerVerify') }}" method="POST">
                         @csrf
                         <div class="header-text mb-4">
@@ -129,7 +128,6 @@
                 </div>
             </div>
         </div>
-    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
