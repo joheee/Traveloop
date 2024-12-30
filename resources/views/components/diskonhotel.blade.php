@@ -1,14 +1,14 @@
 <div class="py-5">
   <div class="text-center mb-4">
     <h2 class="fw-bold fs-4 fs-md-3">HOTEL</h2>
-    <p class="fs-6 fs-md-5">
+    <p class="fs-6 fs-md-5 mx-auto w-50">
       Kami menawarkan penginapan terbaik dengan kualitas unggul, lokasi strategis, dan kemudahan pemesanan praktis.
     </p>
   </div>
   <div class="row row-cols-1 row-cols-md-3 g-3">
     <!-- Card 1 -->
     <div class="col">
-      <div class="card h-100 border-primary shadow-sm">
+      <div class="card h-100 border-primary shadow-sm card-hotel">
         <img src="{{ asset('static/hotel1.jpg') }}" class="card-img-top" alt="Aurora Bliss Hotel">
         <a href="#" class="text-decoration-none">
           <div class="card-body">
@@ -31,7 +31,7 @@
     </div>
     <!-- Card 2 -->
     <div class="col">
-      <div class="card h-100 border-primary shadow-sm">
+      <div class="card h-100 border-primary shadow-sm card-hotel">
         <img src="{{ asset('static/hotel1.jpg') }}" class="card-img-top" alt="Serene View Hotel">
         <a href="#" class="text-decoration-none">
           <div class="card-body">
@@ -54,7 +54,7 @@
     </div>
     <!-- Card 3 -->
     <div class="col">
-      <div class="card h-100 border-primary shadow-sm">
+      <div class="card h-100 border-primary shadow-sm card-hotel">
         <img src="{{ asset('static/hotel1.jpg') }}" class="card-img-top" alt="Tranquil Resort">
         <a href="#" class="text-decoration-none">
           <div class="card-body">
@@ -83,7 +83,7 @@
     <div class="row row-cols-1 row-cols-md-3 g-3">
       <!-- Card 1 -->
       <div class="col">
-        <div class="card h-100 border-primary shadow-sm">
+        <div class="card h-100 border-primary shadow-sm card-hotel">
           <img src="{{ asset('static/hotel1.jpg') }}" class="card-img-top" alt="Aurora Bliss Hotel">
           <a href="#" class="text-decoration-none">
             <div class="card-body">
@@ -106,7 +106,7 @@
       </div>
       <!-- Card 2 -->
       <div class="col">
-        <div class="card h-100 border-primary shadow-sm">
+        <div class="card h-100 border-primary shadow-sm card-hotel">
           <img src="{{ asset('static/hotel1.jpg') }}" class="card-img-top" alt="Serene View Hotel">
           <a href="#" class="text-decoration-none">
             <div class="card-body">
@@ -129,7 +129,7 @@
       </div>
       <!-- Card 3 -->
       <div class="col">
-        <div class="card h-100 border-primary shadow-sm">
+        <div class="card h-100 border-primary shadow-sm card-hotel">
           <img src="{{ asset('static/hotel1.jpg') }}" class="card-img-top" alt="Tranquil Resort">
           <a href="#" class="text-decoration-none">
             <div class="card-body">
@@ -159,9 +159,15 @@
   <button id="expandBtn" class="btn mt-2 text-white" style="background-color: #0ea5e9">Show More</button>
 </div>
 <style>
-  .text-decoration-none:hover {
-    color: white;
+  .card-hotel:hover {
     background-color: #0ea5e9
+  }
+  .card-hotel:hover a h5,
+  .card-hotel:hover a p,
+  .card-hotel:hover a span,
+  .card-hotel:hover a svg
+  {
+    color: white !important;
   }
 </style>
 <script>

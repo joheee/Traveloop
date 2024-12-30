@@ -20,6 +20,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/', [HotelController::class, 'landing'])->name('hotel.landing');
     Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
     Route::get('/detail-hotel', [HotelController::class, 'detailHotel'])->name('components.detail');
+    Route::get('/booking-hotel', [HotelController::class, 'bookinghotel'])->name('components.booking');
 });
 
 Route::middleware('guest')->group(function () {

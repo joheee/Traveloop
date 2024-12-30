@@ -14,4 +14,8 @@ class HotelController extends Controller
     {
         return view('components.detail');
     }
+    public function bookingHotel()
+    {
+        return view('components.booking');
+    }
 }

@@ -155,7 +155,7 @@
                     <div class="card-body">
                         <h4 class="text-primary fw-bold">
                             Rp.750.000 <span
-                                class="text-danger text-decoration-line-through fw-normal fs-6">Rp.1250.000</span>
+                                class="text-danger text-decoration-line-through fw-normal fs-6">Rp.1.250.000</span>
                         </h4>
                         <p>Jum, 27 Des - Sab, 28 Des | 1 Kamar, 2 Tamu</p>
                         <p>Your savings: <span class="text-success fw-bold">Rp.400.000</span></p>
