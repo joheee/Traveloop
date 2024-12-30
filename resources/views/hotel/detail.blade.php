@@ -1,4 +1,7 @@
     @extends('layout.bootstrap')
+
+    @section('title', $hotel->name)
+
     @section('content')
         <style>
             .highlight {
@@ -152,12 +155,12 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="text-primary fw-bold">
-                                Rp. {{ $hotel->price_per_night }}
+                                Rp. {{ number_format($hotel->price_per_night * 1000, 2, ',', '.') }}
                             </h4>
                             <p>{{ $today . ' - ' . $tomorrow . ' ' }}| 1 Kamar, 2 Tamu</p>
                             <hr>
-                            <h5>Total Price: <span class="fw-bold">Rp. {{ $hotel->price_per_night }}</span></h5>
-                            <button class="btn btn-primary btn-lg w-100 mt-3">PESAN SEKARANG!!</button>
+                            <h5>Total Price: <span class="fw-bold">Rp. {{ number_format($hotel->price_per_night * 1000, 2, ',', '.') }}</span></h5>
+                            <a href="{{ route('hotel.booking', $hotel->id) }}" class="btn btn-primary btn-lg w-100 mt-3">PESAN SEKARANG!!</a>
                         </div>
                     </div>
                 </div>

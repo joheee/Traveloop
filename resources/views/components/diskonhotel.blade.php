@@ -19,7 +19,7 @@
             @else
                 <img src="{{ asset('static/hotel1.jpg') }}" class="card-img-top h-50" alt="Indonesia">
             @endif
-            <a href="{{ route('components.detail', $item->id) }}" class="text-decoration-none h-50 text-black">
+            <a href="{{ route('hotel.detail', $item->id) }}" class="text-decoration-none h-50 text-black">
                 <div class="card-body">
                     <h5 class="card-title fw-bold fs-6 fs-md-5 ">{{ $item->name }}</h5>
                     <p class="card-text fs-6 fs-md-4  text-truncate">{{ $item->description }}</p>
@@ -34,7 +34,7 @@
                         <span class="">{{ $item->address }}</span>
                     </div>
                     <div>
-                        <h6 class="fw-bold ">Rp.{{ $item->price_per_night }}</h6>
+                        <h6 class="fw-bold ">Rp.{{ number_format($item->price_per_night * 1000, 2, ',', '.') }}</h6>
                     </div>
                 </div>
             </a>

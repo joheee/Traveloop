@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
+    public function bookingHotel(Hotel $hotel)
+    {
+        return view('hotel.booking', [
+            'hotel' => $hotel
+        ]);
+    }
     public function create(Request $request, Hotel $hotel){
         // Validasi input
         $validatedData = $request->validate([

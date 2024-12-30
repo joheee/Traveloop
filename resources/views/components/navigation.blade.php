@@ -8,10 +8,10 @@
             <ul class="d-flex align-items-center navbar-nav ms-auto w-100 justify-content-center justify-content-lg-end">
                 @if(auth()->check())
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Cart</a>
+                        <a class="nav-link text-white" href="{{ route('hotel.landing') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Profile</a>
+                        <a class="nav-link text-white" href="{{ route('profile') }}">Profile</a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('auth.logout') }}" class="btn btn-link nav-link text-white">Logout</a>
