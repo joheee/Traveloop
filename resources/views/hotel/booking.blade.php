@@ -238,7 +238,7 @@
                     check_in_date: $('#checkIn').val(),
                     check_out_date: $('#checkOut').val(),
                     number_of_rooms: $('#jumlahKamar').val(),
-                    total_price: parseInt($('#total-price').text().replace(/[^\d]/g, ''), 10),
+                    total_price: parseInt($('#total-price').text().replace(/[^\d]/g, ''), 10) / 1000,
                     _token: $('meta[name="csrf-token"]').attr('content'),
                 };
 

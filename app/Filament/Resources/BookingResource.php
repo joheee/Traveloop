@@ -211,7 +211,8 @@ class BookingResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('total_price')
                     ->formatStateUsing(function ($state) {
-                        return NumberFormatter::create('id_ID', NumberFormatter::CURRENCY)->format($state * 1000);
+                        return NumberFormatter::create('id_ID', NumberFormatter::CURRENCY)
+                            ->format((float) $state * 1000);
                     })
                     ->sortable(),
                 Tables\Columns\TextColumn::make('status')
