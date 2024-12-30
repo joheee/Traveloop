@@ -44,7 +44,7 @@
                                     <td>{{ $history->booking->hotel->name }}</td>
                                     <td>{{ $history->booking->check_in_date }}</td>
                                     <td>{{ $history->booking->check_out_date }}</td>
-                                    <td>{{ $history->booking->number_of_guests }}</td>
+                                    <td>{{ $history->booking->number_of_rooms }}</td>
                                     <td>{{ NumberFormatter::create('id_ID', NumberFormatter::CURRENCY)->format($history->booking->total_price * 1000); }}</td>
                                     <td>
                                         <span

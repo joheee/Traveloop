@@ -38,9 +38,9 @@ class AuthController extends Controller
                 $user = User::where('email', $request->email)->first();
 
                 if ($user->role == 'admin') {
-                    return redirect()->route('filament.admin.pages.dashboard');
+                    return redirect()->route('filament.admin.pages.dashboard')->with('success', 'Login successfully');
                 } else {
-                    return redirect()->route('hotel.landing')->with('success', 'Login successfully as user');
+                    return redirect()->route('hotel.landing')->with('success', 'Login successfully');
                 }
             } else {
                 return redirect()->back()->with('error', 'Ada Kesalahan Saat Login');
@@ -80,7 +80,7 @@ class AuthController extends Controller
 
             auth()->login($user);
             toastr()->success('success', 'Register successfully');
-            return redirect()->route('/');
+            return redirect()->route('hotel.landing');
         } catch (Exception $e) {
             toastr()->warning('invalid', $e->getMessage());
             return redirect()->back()->with('error', $e->getMessage());

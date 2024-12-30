@@ -49,8 +49,4 @@ class HotelController extends Controller
             'tomorrow' => $tomorrowFormatted
         ]);
     }
-    public function bookingHotel()
-    {
-        return view('components.booking');
-    }
 }
