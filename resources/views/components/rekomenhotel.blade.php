@@ -14,7 +14,7 @@
                         <img src="{{ asset('static/hotel1.jpg') }}" class="card-img rounded-3" alt="Indonesia">
                     @endif
                     <div class="custom-overlay rounded-3"></div>
-                    <div class="position-absolute top-0 start-0 text-start p-3">
+                    <div class="position-absolute top-50 start-0 text-start p-3" style="transform: translateY(-50%);">
                         <h5 class="card-title">{{ $item->name }}</h5>
                         <p class="card-text">{{ $item->address  }}</p>
                     </div>
