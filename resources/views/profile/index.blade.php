@@ -9,7 +9,7 @@
       <div class="row">
         <div class="col-md-4">
           <div class="card p-3 shadow-sm">
-            <h5 class="fw-bold text-center">Profile</h5>
+            <h5 class="fw-bold">Profile</h5>
             <div class="d-flex align-items-center">
               <div
                 class="rounded-circle bg-light d-flex justify-content-center align-items-center me-3"
@@ -23,22 +23,23 @@
               </div>
             </div>
 
-            <p class="fw-bold mt-3">Tanggal Bergabung: -</p>
+            <p class="mt-3">Tanggal Bergabung: -</p>
           </div>
         </div>
         <div class="col-md-8">
           <div class="card p-3 shadow-sm">
             <h5 class="mb-4 fw-bold">Riwayat Booking</h5>
-            <table class="table table-bordered text-center">
+            <div class="table-responsive">
+                <table class="table table-bordered text-center">
               <thead class="table-light">
                 <tr>
-                  <th>No</th>
-                  <th>Nama Hotel</th>
-                  <th>Tanggal Check In</th>
-                  <th>Tanggal Check Out</th>
-                  <th>Jumlah Tamu</th>
-                  <th>Harga</th>
-                  <th>Status</th>
+                  <td>No</td>
+                  <td>Nama Hotel</td>
+                  <td>Tanggal Check In</td>
+                  <td>Tanggal Check Out</td>
+                  <td>Jumlah Tamu</td>
+                  <td>Harga</td>
+                  <td>Status</td>
                 </tr>
               </thead>
               <tbody>
@@ -49,6 +50,7 @@
                 </tr>
               </tbody>
             </table>
+            </div>
           </div>
         </div>
       </div>
