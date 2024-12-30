@@ -1,4 +1,4 @@
-<div class="py-5">
+<div class="py-5 mt-5">
     <div class="row align-items-center">
         <div class="col-md-6 text-start text-md-start">
             <h2 class="judul fw-bold">Dapatkan pengalaman yang <br> tak terlupakan dengan satu <br> kali klik</h2>
