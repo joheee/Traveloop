@@ -67,7 +67,7 @@
                     <div class="mt-4">
                         <h3 class="fw-bold">{{ $hotel->name }} <span class="badge-star">5★</span></h3>
                         <p>{{ $hotel->address }}</p>
-                        <a href="#" class="link">Nikmati Pengalaman check in di hotel ini</a>
+                        <p class="alert alert-primary d-inline-block">Nikmati Pengalaman check in di hotel ini</p>
                         <h5 class="mt-3 fw-bold">Deskripsi</h5>
                         <p>
                             {{ $hotel->description }}.
