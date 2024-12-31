@@ -50,7 +50,7 @@
                       <td>{{ \Carbon\Carbon::parse($item->check_in_date)->translatedFormat('l, d F Y') }}</td>
                       <td>{{ \Carbon\Carbon::parse($item->check_out_date)->translatedFormat('l, d F Y') }}</td>                        
                       <td>{{ $item->number_of_rooms }} Kamar</td>
-                      <td>Rp.{{ number_format($item->total_price * 100, 2, ',', '.') }}</td>
+                      <td>Rp.{{ number_format($item->total_price * 1000, 2, ',', '.') }}</td>
                       <td class="text-success">{{ $item->status }}</td>
                     </tr>
                   @empty

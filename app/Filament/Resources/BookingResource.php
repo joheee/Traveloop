@@ -41,25 +41,23 @@ class BookingResource extends Resource
                             ->live()
                             ->afterStateHydrated(function ($state, $set) {
                                 $hotel = \App\Models\Hotel::find($state);
-                                if ($hotel)
-                                    $set('price_per_night', NumberFormatter::create('id_ID', NumberFormatter::DECIMAL_SEPARATOR_SYMBOL)->format($hotel->price_per_night) ?? null);
+                                if ($hotel) {
+                                    $set('price_per_night', number_format($hotel->price_per_night * 1000, 2, ',', '.'));
+                                }
                             })
                             ->afterStateUpdated(function ($state, $set, $get) {
                                 if ($state) {
-                                    // Ambil harga per malam dari hotel yang dipilih
                                     $hotel = \App\Models\Hotel::find($state);
                                     $pricePerNight = $hotel->price_per_night ?? 0;
 
-                                    // Set harga per malam
-                                    $set('price_per_night', NumberFormatter::create('id_ID', NumberFormatter::DECIMAL)->format($pricePerNight * 1000));
+                                    $set('price_per_night', number_format($hotel->price_per_night * 1000, 2, ',', '.'));
 
-                                    // Kalkulasi ulang total price
                                     $totalNights = (int) $get('total_nights');
                                     $totalRooms = (int) $get('number_of_rooms');
 
                                     if ($totalNights && $totalRooms) {
                                         $totalPrice = $totalRooms * $totalNights * $pricePerNight;
-                                        $set('total_price', NumberFormatter::create('id_ID', NumberFormatter::DECIMAL)->format($totalPrice * 1000));
+                                        $set('total_price', number_format($totalPrice * 1000, 2, ',', '.'));
                                     }
                                 }
                             })
@@ -100,12 +98,11 @@ class BookingResource extends Resource
                                 $totalRooms = (int) $get('number_of_rooms');
                                 $hotel = \App\Models\Hotel::find($get('hotel_id'));
                                 $pricePerNight = $hotel->price_per_night ?? 0;
-                                // $pricePerNight = (float) $get('price_per_night');
                                 $totalNights = (int) $get('total_nights');
 
                                 if ($totalRooms && $totalNights && $pricePerNight) {
                                     $totalPrice = $totalRooms * $totalNights * $pricePerNight;
-                                    $set('total_price', NumberFormatter::create('id_ID', NumberFormatter::DECIMAL)->format($totalPrice * 1000));
+                                    $set('total_price', number_format($totalPrice * 1000, 2, ',', '.'));
                                 }
                             })
                             ->native(false)
@@ -125,7 +122,7 @@ class BookingResource extends Resource
 
                                 if ($totalRooms && $totalNights && $pricePerNight) {
                                     $totalPrice = $totalRooms * $totalNights * $pricePerNight;
-                                    $set('total_price', NumberFormatter::create('id_ID', NumberFormatter::DECIMAL)->format($totalPrice * 1000));
+                                    $set('total_price', number_format($totalPrice * 1000, '2', ',', '.'));
                                 }
                             })
                             ->numeric(),
@@ -136,16 +133,17 @@ class BookingResource extends Resource
                             ->columnSpanFull()
                             ->currency('IDR')
                             ->locale('id_ID')
-                            ->minValue(100)
                             ->afterStateHydrated(function ($state) {
-                                NumberFormatter::create('id_ID', NumberFormatter::DECIMAL)->format((float) $state * 1000);
+                                $cleaned = preg_replace('/[^\d,.-]/u', '', $state);
+                                return $cleaned;
                             })
                             ->formatStateUsing(function ($state) {
-                                return NumberFormatter::create('id_ID', NumberFormatter::CURRENCY)
-                                    ->format((float) $state * 1000);
+                                $cleaned = preg_replace('/[^\d,.-]/u', '', $state);
+                                return $cleaned;
                             })
                             ->mutateDehydratedStateUsing(function ($state) {
-                                return (float) $state / 100000;
+                                $cleaned = preg_replace('/[^\d,.-]/u', '', $state);
+                                return $cleaned;
                             }),
                         MoneyInput::make('total_price')
                             ->label('Total Price')
@@ -155,9 +153,13 @@ class BookingResource extends Resource
                             ->currency('IDR')
                             ->locale('id_ID')
                             ->minValue(100)
+                            ->afterStateHydrated(function ($state) {
+                                $cleaned = preg_replace('/[^\d,.-]/u', '', $state);
+                                return $cleaned;
+                            })
                             ->formatStateUsing(function ($state) {
-                                return NumberFormatter::create('id_ID', NumberFormatter::CURRENCY)
-                                    ->format((float) $state * 1000);
+                                $cleaned = preg_replace('/[^\d,.-]/u', '', $state);
+                                return number_format((float) $cleaned * 1000, 2, ',', '.');
                             })
                             ->mutateDehydratedStateUsing(function ($state) {
                                 return (float) $state / 100000;
@@ -193,20 +195,24 @@ class BookingResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-        ->defaultSort('created_at', 'desc')
+            ->defaultSort('created_at', 'desc')
             ->columns([
                 Tables\Columns\TextColumn::make('user.name')
                     ->label('Booked by')
+                    ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('hotel.name')
+                    Tables\Columns\TextColumn::make('hotel.name')
+                    ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('check_in_date')
+                    Tables\Columns\TextColumn::make('check_in_date')
                     ->date('l, d F Y')
+                    ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('check_out_date')
+                    Tables\Columns\TextColumn::make('check_out_date')
                     ->date('l, d F Y')
+                    ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('number_of_rooms')
+                    Tables\Columns\TextColumn::make('number_of_rooms')
                     ->numeric()
                     ->alignCenter()
                     ->sortable(),
@@ -238,7 +244,7 @@ class BookingResource extends Resource
                 //
             ])
             ->actions([
-                // Tables\Actions\ViewAction::make(),
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
@@ -260,7 +266,7 @@ class BookingResource extends Resource
         return [
             'index' => Pages\ListBookings::route('/'),
             'create' => Pages\CreateBooking::route('/create'),
-            // 'view' => Pages\ViewBooking::route('/{record}'),
+            'view' => Pages\ViewBooking::route('/{record}'),
             'edit' => Pages\EditBooking::route('/{record}/edit'),
         ];
     }
