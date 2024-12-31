@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg sticky-top" style="background-color: #0ea5e9">
+<nav class="navbar navbar-expand-lg sticky-top shadow" style="background-color: #0ea5e9">
     <div class="container">
         <a class="navbar-brand text-white" href="#">Traveloop</a>
         <button class="navbar-toggler p-1 w-auto h-auto fs-6" type="button" data-bs-toggle="collapse"
@@ -11,35 +11,41 @@
                 class="d-flex align-items-center navbar-nav ms-auto w-100 justify-content-center justify-content-lg-end">
                 @if (auth()->check())
                     <li class="nav-item">
-                        <a class="nav-link text-white {{ Request::is('/') ? 'active' : '' }}"
+                        <a class="nav-link text-white {{ Request::is('/') ? 'fw-bold' : '' }}"
                             href="{{ route('hotel.landing') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white {{ Request::is('/list-hotel') ? 'active' : '' }}"
+                        <a class="nav-link text-white {{ Request::is('/list-hotel') ? 'fw-bold' : '' }}"
                             href="{{ route('hotel.all') }}">Hotel</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white {{ Request::is('profile') ? 'active' : '' }}"
+                        <a class="nav-link text-white {{ Request::is('profile') ? 'fw-bold' : '' }}"
                             href="{{ route('profile') }}">Profile</a>
+                    </li>
+                    <li class="nav-item mx-3 text-white">
+                        |
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('auth.logout') }}" class="btn btn-link nav-link text-white">Logout</a>
                     </li>
                 @else
                     <li class="nav-item">
-                        <a class="nav-link text-white {{ Request::is('/') ? 'active' : '' }}"
+                        <a class="nav-link text-white {{ Request::is('/') ? 'fw-bold' : '' }}"
                             href="{{ route('hotel.landing') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white {{ Request::is(['list-hotel']) ? 'active' : '' }}"
+                        <a class="nav-link text-white {{ Request::is(['list-hotel']) ? 'fw-bold' : '' }}"
                             href="{{ route('hotel.all') }}">Hotel</a>
                     </li>
+                    <li class="nav-item mx-3 text-white">
+                        |
+                    </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white {{ Request::is('auth/register') ? 'active' : '' }}"
+                        <a class="nav-link text-white {{ Request::is('auth/register') ? 'fw-bold' : '' }}"
                             href="{{ route('auth.register') }}">Register</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white {{ Request::is('login') ? 'active' : '' }}"
+                        <a class="nav-link text-white {{ Request::is('login') ? 'fw-bold' : '' }}"
                             href="{{ route('login') }}">Login</a>
                     </li>
                 @endif

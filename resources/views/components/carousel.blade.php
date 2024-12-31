@@ -1,10 +1,10 @@
-<div id="carausel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="{{ $interval ?? 2000 }}" style="height: 550px;">
+<div id="carausel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="{{ $interval ?? 2000 }}">
     <ol class="carousel-indicators">
         @foreach($images as $index => $image)
             <li data-bs-target="#carausel" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}"></li>
         @endforeach
     </ol>
-    <div class="carousel-inner" style="height: 550px;">
+    <div class="carousel-inner">
         @foreach($images as $index => $image)
             <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
                 <img class="d-block w-100" src="{{ asset('static/' . $image['src']) }}" alt="Slide {{ $index + 1 }}">

@@ -52,15 +52,14 @@
     </style>
 </head>
 
-<body class="w-vw-100 overflow-x-hidden">
-    <div class="row border rounded-5 p-3 bg-white" style="height: 100vh !important">
+<body style="width: 100vw; overflow-x: hidden">
+    <div class="row border rounded-5 p-5 bg-white" style="height: 100vh !important">
             <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box"
                 style="background: #103cbe">
-                <p class="text-white fs-2" style="font-weight: 600">
+                <h2 class="fs-1 text-white">Traveloop</h2>
+                <p class="text-white fs-4">
                     Find Your Perfect Stay
                 </p>
-                <small class="text-white text-wrap text-center" style="width: 17rem">
-                    Book your dream hotel with ease and comfort</small>
             </div>
 
             <div class="col-md-6 right-box d-flex align-items-center">
@@ -68,8 +67,8 @@
                     <form action="{{ route('auth.registerVerify') }}" method="POST">
                         @csrf
                         <div class="header-text mb-4">
-                            <h2>Create an Account</h2>
-                            <p>Join us to start booking your perfect stay.</p>
+                            <h2>Registrasi</h2>
+                            <p>Masukkan nama, email dan password untuk daftar Traveloop!</p>
                         </div>
                         <div class="input-group mb-3">
                             <input type="text" name="name" class="form-control form-control-lg bg-light fs-6 @error('name') is-invalid @enderror"
@@ -89,7 +88,7 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class="input-group mb-1">
+                        <div class="input-group mb-3">
                             <input type="password" name="password" class="form-control form-control-lg bg-light fs-6 @error('password') is-invalid @enderror"
                                 placeholder="Password" />
                             @error('password')
@@ -98,7 +97,7 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class="input-group mb-1">
+                        <div class="input-group mb-3">
                             <input type="password" name="confirm_password"
                                 class="form-control form-control-lg bg-light fs-6 @error('confirm_password') is-invalid @enderror" placeholder="Confirm Password" />
                             @error('confirm_password')
@@ -107,22 +106,14 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class="input-group mb-5 d-flex justify-content-between">
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="formCheck" />
-                                <label for="formCheck" class="form-check-label text-secondary"><small>I agree to the
-                                        Terms
-                                        and Conditions</small></label>
-                            </div>
-                        </div>
-                        <div class="input-group mb-3">
+                        <div class="input-group mb-3 mt-5">
                             <button type="submit" class="btn btn-lg btn-primary w-100 fs-6">
-                                Register
+                                Registrasi
                             </button>
                         </div>
 
                         <div class="row">
-                            <small>Already have an account? <a href="{{ route('login') }}">Login here</a></small>
+                            <small>Sudah punya akun? <a href="{{ route('login') }}">Login</a></small>
                         </div>
                     </form>
                 </div>

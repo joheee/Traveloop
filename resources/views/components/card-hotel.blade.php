@@ -1,5 +1,5 @@
 <div>
-    <div class="card p-0 border-primary shadow-sm text-decoration-none d-flex text-black card-hotel">
+    <div class="card p-0 border-primary shadow-sm text-decoration-none d-flex text-black card-hotel mb-3">
         @if ($image)
             @php
                 $images = json_decode($image, true);

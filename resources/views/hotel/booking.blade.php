@@ -29,7 +29,7 @@
     </head>
 
     <body>
-        <div class="container mt-5">
+        <div class="container my-5">
             <div class="row g-4">
                 <div class="col-md-6">
                     <div class="card shadow-sm border-0">

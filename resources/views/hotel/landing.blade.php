@@ -33,10 +33,10 @@
   </section>
 
   <section>
-    <div class="py-5">
+    <div class="pt-5">
       <div class="text-center mb-4">
         <h2 class="fw-bold fs-4 fs-md-3">HOTEL</h2>
-        <p class="fs-6 fs-md-5 mx-auto w-50">
+        <p class="fs-6 fs-md-5 mx-auto w-md-50">
           Kami menawarkan penginapan terbaik dengan kualitas unggul, lokasi strategis, dan kemudahan pemesanan praktis.
         </p>
       </div>
@@ -56,11 +56,35 @@
     
     <!-- Button to toggle expand/collapse -->
     <div class="text-center">
-        <a href="{{ route('hotel.all') }}" class="btn mt-2 text-white" style="background-color: #0ea5e9">Show More</a>
+        <a href="{{ route('hotel.all') }}" class="btn mt-2 text-white" style="background-color: #0ea5e9">Lihat Selengkapnya</a>
     </div>
   </section>
 
-  @include('components.rekomenhotel')
+  <div class="py-5 mt-3">
+    <h2 class="text-center mb-4">Rekomendasi Hotel</h2>
+    <div class="row g-3">
+        @foreach ($recomended as $item)
+            <div class="col-lg-4 col-6 col-md-6 mb-md-4 p-md-3 p-1 mt-0">
+                <a href="#" class="card position-relative text-white rounded-3">
+                    @if ($item->image)
+                        @php
+                            $firstImage = $item->image[0]; 
+                        @endphp
+                        <img src="{{ asset('storage/' . $firstImage) }}" class="card-img-top"
+                            alt="{{ $item->name }}">
+                    @else
+                        <img src="{{ asset('static/hotel1.jpg') }}" class="card-img rounded-3" alt="Indonesia">
+                    @endif
+                    <div class="custom-overlay rounded-3"></div>
+                    <div class="position-absolute top-50 start-0 text-start p-3" style="transform: translateY(-50%);">
+                        <h5 class="card-title">{{ $item->name }}</h5>
+                        <p class="card-text">{{ $item->address  }}</p>
+                    </div>
+                </a>
+            </div>
+        @endforeach
+    </div>
+  </div>
 
   <section id="our-service" class="py-5">
     <div class="row align-items-center">
@@ -70,28 +94,28 @@
       <div class="col-12 col-lg-6 text-center">
         <h2 class="text-uppercase mb-4">Our Services</h2>
         <div class="row">
-          <div class="col-4 col-md-6 col-lg-3 mb-3">
+          <div class="col-4 col-md-6 col-lg-3 mb-md-1 md-1 p-md-2 p-1">
             <x-card-service name="TV" icon="tv" />
           </div>
-          <div class="col-4 col-md-6 col-lg-3 mb-3">
+          <div class="col-4 col-md-6 col-lg-3 mb-md-1 md-1 p-md-2 p-1">
             <x-card-service name="Coffe/Tea" icon="cup-hot" />
           </div>
-          <div class="col-4 col-md-6 col-lg-3 mb-3">
+          <div class="col-4 col-md-6 col-lg-3 mb-md-1 md-1 p-md-2 p-1">
             <x-card-service name="AC" icon="box" />
           </div>
-          <div class="col-4 col-md-6 col-lg-3 mb-3">
+          <div class="col-4 col-md-6 col-lg-3 mb-md-1 md-1 p-md-2 p-1">
             <x-card-service name="Lift" icon="box" />
           </div>
-          <div class="col-4 col-md-6 col-lg-3 mb-3">
+          <div class="col-4 col-md-6 col-lg-3 mb-md-1 md-1 p-md-2 p-1">
             <x-card-service name="Controller" icon="box" />
           </div>
-          <div class="col-4 col-md-6 col-lg-3 mb-3">
+          <div class="col-4 col-md-6 col-lg-3 mb-md-1 md-1 p-md-2 p-1">
             <x-card-service name="24 Jam" icon="box" />
           </div>
-          <div class="col-6 col-md-6 col-lg-3 mb-3">
+          <div class="col-6 col-md-6 col-lg-3 mb-md-1 md-1 p-md-2 p-1">
             <x-card-service name="Free Wifi" icon="box" />
           </div>
-          <div class="col-6 col-md-6 col-lg-3 mb-3">
+          <div class="col-6 col-md-6 col-lg-3 mb-md-1 md-1 p-md-2 p-1">
             <x-card-service name="Free Book" icon="box" />
           </div>
         </div>
@@ -99,10 +123,10 @@
     </div>
   </section>
 
-  <div class="py-5">
+  <div class="py-5 mb-5">
     <div class="row align-items-center">
         <div class="col-lg-6">
-            <h2 class="fw-bold mb-3">Butuh Bantuan?<br>Cari Jawaban di <br>FAQ Kami!</h2>
+            <h2 class="fw-bold mb-3">Butuh Bantuan? <br> Cari Jawaban di FAQ Kami!</h2>
             <p>
                 Kami telah mengumpulkan beberapa pertanyaan umum untuk memudahkan Anda dalam menemukan informasi yang
                 dibutuhkan.

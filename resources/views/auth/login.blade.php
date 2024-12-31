@@ -50,17 +50,18 @@
     </style>
 </head>
 
-<body class="w-vw-100 overflow-x-hidden">
+<body style="width: 100vw; overflow-x: hidden">
 
-        <div class="row border rounded-5 p-3 bg-white" style="height: 100vh !important">
+        <div class="row border rounded-5 p-5 bg-white" style="height: 100vh !important">
             <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box"
                 style="background: #103cbe">
                 
-                <p class="text-white fs-2" style="font-weight: 600">
+                <h2 class="fs-1 text-white">Traveloop</h2>
+                <p class="text-white fs-4">
                     Find Your Perfect Stay
                 </p>
-                <small class="text-white text-wrap text-center" style="width: 17rem">
-                    Book your dream hotel with ease and comfort</small>
+                {{-- <small class="text-white text-wrap text-center" style="width: 17rem">
+                    Book your dream hotel with ease and comfort</small> --}}
             </div>
 
             <div class="col-md-6 right-box d-flex align-items-center">
@@ -68,8 +69,8 @@
                     <form action="{{ route('auth.loginVerify') }}" method="POST">
                         @csrf
                         <div class="header-text mb-4">
-                            <h2>Hello, Again</h2>
-                            <p>We are happy to have you back.</p>
+                            <h2>Login</h2>
+                            <p>Masukkan email dan password anda untuk login!</p>
                         </div>
                         <div class="input-group mb-3">
                             <input type="text" name="email"
@@ -91,22 +92,12 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class="input-group mb-5 d-flex justify-content-between">
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="formCheck" />
-                                <label for="formCheck" class="form-check-label text-secondary"><small>Remember
-                                        Me</small></label>
-                            </div>
-                            <div class="forgot">
-                                <small><a href="#">Forgot Password?</a></small>
-                            </div>
-                        </div>
-                        <div class="input-group mb-3">
+                        <div class="input-group mb-3 mt-5">
                             <button type="submit" class="btn btn-lg btn-primary w-100 fs-6">Login</button>
                         </div>
 
                         <div class="row">
-                            <small>Don't have an account? <a href="{{ route('auth.register') }}">Sign Up</a></small>
+                            <small>Sudah punya akun? <a href="{{ route('auth.register') }}">Registrasi</a></small>
                         </div>
                     </form>
                 </div>
