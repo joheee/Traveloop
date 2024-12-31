@@ -10,6 +10,12 @@
     color: white !important;
 }
 
+.active {
+    border-bottom: 2px solid white;
+    font-weight: bold; /* Opsional: membuat teks lebih menonjol */
+}
+
+
 /* Stack Image */
 .stacked-images {
     position: relative;

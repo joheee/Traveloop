@@ -1,5 +1,7 @@
 @extends('layout.bootstrap')
 
+@section('title', 'Booking '.$hotel->name)
+
 @section('content')
     <style>
         .card-header {
@@ -52,7 +54,7 @@
 
                             <p class="mb-1">
                                 Harga Permalam dan Perkamar <strong class="text-success">Rp.
-                                    {{ $hotel->price_per_night }}</strong>
+                                    {{ number_format($hotel->price_per_night, 3, ',', '.') }}</strong>
                             </p>
                             <p class="text-dark fw-bold">
                                 Total Harga: <strong id="total-price">Rp. 750.000</strong>
@@ -70,7 +72,7 @@
                                 Pastikan Anda mengisi detail pemesanan dengan benar untuk
                                 memastikan kenyamanan dan kelancaran proses reservasi.
                             </p>
-                            <form data-url="{{ route('hotel.booking.create',$hotel->id) }}">
+                            <form data-url="{{ route('hotel.booking.create', $hotel->id) }}">
                                 <div class="row mb-3">
                                     <div class="col">
                                         <label for="namaLengkap" class="form-label">Nama Lengkap</label>
@@ -242,31 +244,35 @@
                     _token: $('meta[name="csrf-token"]').attr('content'),
                 };
 
-                $.ajax({
-                    url: url,
-                    method: 'POST',
-                    data: data,
-                    success: function(response) {
-                        // Menampilkan pesan sukses
-                        $('#alert-container').html(`
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                ${response.message || 'Data berhasil dikirim!'}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
-                        `);
-                    },
-                    error: function(xhr) {
-                        // Menampilkan pesan error
-                        const errorMessage = xhr.responseJSON?.message ||
-                            'Terjadi kesalahan saat memproses data.';
-                            $('#alert-container').html(`
-                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    ${errorMessage}
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                </div>
-                            `);
+                Swal.fire({
+                    title: "yakin Ingin Booking Kamar?",
+                    text: "Pastikan data terisi dengan benar!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Konfirmasi!",
+                    cancelButtonTeks: "Cancel",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: url,
+                            method: 'POST',
+                            data: data,
+                            success: function(response) {
+                                // Menampilkan pesan sukses
+                                Swal.fire("Data Booking Berhasil di Upload!");
+                            },
+                            error: function(xhr) {
+                                // Menampilkan pesan error
+                                const errorMessage = xhr.responseJSON?.message ||
+                                    'Terjadi kesalahan saat memproses data.';
+                                swal.fire(errorMessage);;
+                            }
+                        });
                     }
                 });
+
             });
         </script>
     @endsection

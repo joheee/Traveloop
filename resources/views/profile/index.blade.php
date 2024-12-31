@@ -1,63 +1,73 @@
+
+
 @extends('layout.bootstrap')
 
 @section('title', 'Profile')
 
 @section('content')
-    <div class="container mt-5">
-        <h2 class="mb-4 text-center">User Profile</h2>
+    <div class="container my-5" style="padding-bottom: 180px">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card p-3 shadow-sm">
+            <h5 class="fw-bold">Profile</h5>
+            <div class="d-flex align-items-center">
+              <div
+                class="rounded-circle bg-light d-flex justify-content-center align-items-center me-3"
+                style="width: 80px; height: 80px"
+              >
+                <i class="bi bi-person-circle text-secondary fs-1"></i>
+              </div>
+              <div>
+                <h5 class="mb-1">{{ auth()->user()->name }}</h5>
+                <p class="text-muted mb-1">{{ auth()->user()->email }}</p>
+              </div>
+            </div>
 
-        <div class="card mb-4">
-            <div class="card-header">
-                <h4>Informasi Pengguna</h4>
-            </div>
-            <div class="card-body">
-                <p><strong>Nama:</strong> {{ $user->name }}</p>
-                <p><strong>Email:</strong> {{ $user->email }}</p>
-                <p><strong>Tanggal Bergabung:</strong> {{ $user->created_at->format('d M Y') }}</p>
-            </div>
+            <p class="mt-3">Tanggal Bergabung: {{ auth()->user()->created_at->translatedFormat('l, d F Y') }}</p>
+          </div>
         </div>
-
-        <div class="card mb-4">
-            <div class="card-header">
-                <h4>Riwayat Booking</h4>
-            </div>
-            <div class="card-body">
-                @if ($histories->isEmpty())
-                    <p class="text-muted">Belum ada riwayat booking.</p>
-                @else
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Nama Hotel</th>
-                                <th>Tanggal Check In</th>
-                                <th>Tanggal Check Out</th>
-                                <th>Jumlah Tamu</th>
-                                <th>Harga Total</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($histories as $index => $history)
-                                <tr>
-                                    <td>{{ $index + 1 }}</td>
-                                    <td>{{ $history->booking->hotel->name }}</td>
-                                    <td>{{ $history->booking->check_in_date }}</td>
-                                    <td>{{ $history->booking->check_out_date }}</td>
-                                    <td>{{ $history->booking->number_of_rooms }}</td>
-                                    <td>{{ NumberFormatter::create('id_ID', NumberFormatter::CURRENCY)->format($history->booking->total_price * 1000); }}</td>
-                                    <td>
-                                        <span
-                                            class="badge {{ $history->booking->status === 'confirmed' ? 'bg-success' : ($history->booking->status === 'pending' ? 'bg-warning' : 'bg-info') }}">
-                                            {{ ucfirst($history->booking->status) }}
-                                        </span>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+        <div class="col-md-8">
+          <div class="card p-3 shadow-sm">
+            <h5 class="mb-4 fw-bold">Riwayat Booking</h5>
+            <div class="table-responsive">
+                <table class="table table-bordered text-center">
+              <thead class="table-light">
+                <tr>
+                  <td>No</td>
+                  <td>Nama Hotel</td>
+                  <td>Tanggal Check In</td>
+                  <td>Tanggal Check Out</td>
+                  <td>Jumlah Kamar</td>
+                  <td>Harga</td>
+                  <td>Status</td>
+                </tr>
+              </thead>
+              <tbody>
+                @if ($histories)
+                    @foreach ($histories as $item)
+                      <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $item->hotel->name }}</td>
+                        <td>{{ \Carbon\Carbon::parse($item->check_in_date)->translatedFormat('l, d F Y') }}</td>
+                        <td>{{ \Carbon\Carbon::parse($item->check_out_date)->translatedFormat('l, d F Y') }}</td>                        
+                        <td>{{ $item->number_of_rooms }} Kamar</td>
+                        <td>Rp.{{ number_format($item->total_price * 100, 2, ',', '.') }}</td>
+                        <td class="text-success">{{ $item->status }}</td>
+                      </tr>
+                    @endforeach
+                    @else
+                    <tr>
+                      <td colspan="7" class="text-muted">
+                        Belum ada riwayat booking
+                      </td>
+                    </tr>
                 @endif
+              </tbody>
+            </table>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-@endsection
+
+@endsection 
